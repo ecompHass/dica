@@ -1,0 +1,149 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .App {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+  }
+  
+  .question-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .question-counter {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .option-button {
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .option-button:hover {
+    background-color: #e8f5e9;
+    border-color: #4CAF50;
+  }
+  
+  .result-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .result-card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  
+  .dominant-type {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin: 20px 0;
+  }
+  
+  .type-description {
+    text-align: left;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .scores {
+    margin-top: 30px;
+  }
+  
+  .score-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .score-label {
+    width: 120px;
+    text-align: right;
+    padding-right: 15px;
+    font-weight: bold;
+  }
+  
+  .score-bar-container {
+    flex-grow: 1;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .score-bar {
+    height: 100%;
+    transition: width 0.8s ease-in-out;
+  }
+  
+  .score-value {
+    width: 60px;
+    text-align: left;
+    padding-left: 15px;
+  }
+  
+  .reset-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .reset-button:hover {
+    background-color: #388E3C;
+  }
