@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install || { echo 'Install failed'; exit 1; }
 
 COPY . .
+RUN ls -la /app/src
 RUN npm run build || { echo 'Build failed'; exit 1; } 
 
 FROM nginx:alpine
