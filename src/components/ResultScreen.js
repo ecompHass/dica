@@ -9,6 +9,9 @@ function ResultScreen({ answers, onReset }) {
   
   const [dominantType, score] = getHighestType();
   
+  // Calcular total de questões respondidas
+  const totalAnswers = Object.values(answers).reduce((sum, value) => sum + value, 0);
+  
   const descriptions = {
     D: {
       title: "DOMINADOR",
@@ -50,12 +53,12 @@ function ResultScreen({ answers, onReset }) {
                   <div 
                     className="score-bar" 
                     style={{ 
-                      width: `${(value / 24) * 100}%`,
+                      width: `${(value / totalAnswers) * 100}%`, // Usando totalAnswers calculado acima
                       backgroundColor: type === dominantType ? '#4CAF50' : '#ddd'
                     }}
                   ></div>
                 </div>
-                <div className="score-value">{value}/{totalQuestions}</div>
+                <div className="score-value">{value}</div>
               </div>
             ))}
           </div>

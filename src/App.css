@@ -48,21 +48,17 @@ body {
     margin-bottom: 20px;
   }
   
-  .options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 30px;
-  }
-  
-  .option-button {
-    background-color: #f0f0f0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
+  @media (max-width: 400px) {
+    .options {
+      flex-direction: column;
+    }
+    
+    .option-button {
+      width: 100%;
+      font-size: 16px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
   }
   
   .option-button:hover {

@@ -1,0 +1,115 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dica
+  labels:
+    app: dica
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dica
+  template:
+    metadata:
+      labels:
+        app: dica
+    spec:
+      containers:
+      - name: dica
+        image: eduhass/dica:1.0.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.2"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+---
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: dica-service
+  labels:
+    app: dica
+spec:
+  selector:
+    app: dica
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: ClusterIP
+
+---
+# ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dica-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - dica.yourdomain.com
+    secretName: dica-tls
+  rules:
+  - host: dica.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dica-service
+            port:
+              number: 80
+
+---
+# configmap.yaml (para futuras configurações)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dica-config
+data:
+  # Aqui você pode adicionar configurações caso precise no futuro
+  APP_TITLE: "Questionário de Perfil Comportamental"
+
+---
+# horizontalpodautoscaler.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: dica-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: dica
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
