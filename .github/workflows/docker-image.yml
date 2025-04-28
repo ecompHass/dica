@@ -36,4 +36,4 @@ jobs:
 
     - name: Publish Docker image
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/seu-repositorio:${{ github.sha }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/eduhass:1.0.1
