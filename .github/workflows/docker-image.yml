@@ -32,8 +32,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/dica:1.0.1 --push .
+        docker buildx build --platform linux/amd64,linux/arm64 -t ${{ vars.DOCKERHUB_USERNAME }}/dica:1.0.1 --push .
 
     - name: Publish Docker image
       run: |
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/dica:1.0.1
+        docker push ${{ vars.DOCKERHUB_USERNAME }}/dica:1.0.1
