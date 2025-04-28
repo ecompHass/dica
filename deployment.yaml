@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: dica
-        image: eduhass/dica:1.0.0
+        image: eduhass/dica:1.0.1
         ports:
         - containerPort: 80
         resources:
@@ -69,10 +69,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dica.yourdomain.com
+    - dica.hasslab.tech
     secretName: dica-tls
   rules:
-  - host: dica.yourdomain.com
+  - host: dica.hasslab.tech
     http:
       paths:
       - path: /
