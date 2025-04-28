@@ -1,4 +1,4 @@
-FROM node:16-alpine as build
+FROM node:16-alpine AS build
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
+RUN npm run build || { echo 'Build failed'; exit 1; } 
 
 FROM nginx:alpine
 
