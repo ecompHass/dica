@@ -1,9 +1,9 @@
-FROM node:16-alpine AS build
+FROM node:23-alpine AS build
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm install || { echo 'Install failed'; exit 1; }
 
 COPY . .
 RUN npm run build || { echo 'Build failed'; exit 1; } 
